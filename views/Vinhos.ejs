@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Joao Veloso">
+    <meta name="generator" content="Joao Veloso">
+    <title>Garrafeira</title>
+    <link rel="icon" href='/wine.svg' type="image/icon type">
+
+    <script src="/server.js"></script>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <!-- nav bar-->
+
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+
+            <a href="Main_Menu.html" class="navbar-brand d-flex align-items-center">
+                <strong>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+                        viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                        </path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Imperial</font>
+                    </font>
+
+                </strong>
+            </a>
+            <a style="color:white;text-decoration:none;" href=Menu.html>Menu</a>
+            <a style="color:white;text-decoration:none;" href="#Casta1">Douro</a>
+            <a style="color:white;text-decoration:none;" href="#Casta2">Regiao2</a>
+            <a style="color:white;text-decoration:none;" href="#Casta3">Regiao3</a>
+            <a style="color:white;text-decoration:none;" href="#Casta4">Regiao4</a>
+        </div>
+    </div>
+
+
+
+    <!-- titutlo pagina-->
+
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="font-weight-light">
+                <img src='/wine.svg' style="background-image: url('assets/WineBackground.jpg');"
+                    class="d-inline-block align-middle" width='40' height='40'></img>
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">Garrafeira</font>
+                </font>
+            </h1>
+            <p class="lead text-muted">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">A nossa garrafeira...</font>
+
+                </font>
+            </p>
+        </div>
+    </div>
+
+
+    <!-- ^vinhos-->
+    <body>
+        <form>  
+            <section id="Casta1">
+                <div class="album py-5 bg-light">
+                    <div class="container">
+                        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+                            <h1 class="display-4 font-italic" style="text-align: start;">Douro</h1>
+                            <a style="color:white;text-decoration:none;font-size:30px;padding: 30px;"
+                                href=#TintosRegiao1>Tintos</a>
+                            <a style=" color:white;text-decoration:none;font-size:30px;padding: 50px;"
+                                href="#BrancosRegiao1">Brancos</a>
+
+                        </div>
+                        <section id="TintosRegiao1">
+                            <div class="p-4 p-md-4 mb-4 text-white rounded bg-dark">
+                                <h1 class="display-4 font-italic" style="text-align: Center;">Tintos</h1>
+                            </div>
+
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                <%VinhosList.forEach(vinhos=>{%>
+                                <div class="col">
+                                    <div class="card shadow-sm">
+                                        <div style="align-self: center;">
+                                                <img src='/<%=vinhos.Nome%>.jpg' style="align-items: center ;max-width:230px; max-height:500px;"
+                                                class="d-inline-block align-middle" width=auto height=auto></img>
+                                            </div>
+     
+                                        <div class="card-body">
+                                            <p class="card-text" style="font-size:27px;margin-bottom: 0px;">
+                                                <font style="vertical-align: inherit; "><%=vinhos.Nome%></font>
+                                                <p ><font style="vertical-align: inherit; "><%=vinhos.Ano%></font>
+                                                </p>
+                                                
+                                            </p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group" >
+                                                    <button type="button" style="margin-right: 10px;" class="btn btn-sm btn-outline-secondary">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Ver Vinho</font>
+                                                        </font>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                        <img src='/shopping-cart.png' style="align-items: center ;max-width:25px; max-height:25px;"
+                                                class="d-inline-block align-middle" width=auto height=auto></img>
+                                                    </button>
+                                                </div>
+                                                <small class="text-muted" style="font-size:22px;">
+                                                    <font style="vertical-align: inherit;">
+                                                          <%=vinhos.Preco%>€
+                                                    </font>
+                                                </small>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <%})%>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <section id="BrancosRegiao1">
+                        <div class="p-4 p-md-10 mb-4 text-white rounded bg-dark">
+                            <h1 class="display-4 font-italic" style="text-align: Center;">Brancos</h1>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marcador de posição: ظفري"
+                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                            fill="#eceeef" dy=".3em">Vinho 1</text>
+
+
+                                    </svg>
+
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">explicacao vinho 1</font>
+                                            </font>
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Ver vinho</font>
+                                                    </font>
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Ano?(mais informacoes)</font>
+                                                </font>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marcador de posição: ظفري"
+                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                            fill="#eceeef" dy=".3em">Vinho 2</text>
+                                    </svg>
+
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">explicacao vinho 2</font>
+                                            </font>
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Ver vinho</font>
+                                                    </font>
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Ano?(mais informacoes)</font>
+                                                </font>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marcador de posição: ظفري"
+                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                            fill="#eceeef" dy=".3em">Vinho 3</text>
+                                    </svg>
+
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">explicacao vinho 3</font>
+                                            </font>
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Ver vinho</font>
+                                                    </font>
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Ano?(mais informacoes)</font>
+                                                </font>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </section>
+                </div>
+            </section>
+        </form>
+    </body>
+
+
+    <footer class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md">
+                <h4>Imperial</h4>
+                <small class="d-block mb-3 text-muted">© 2021-2021</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Sobre nós</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary" href="#">Morada</a></li>
+                    <li><a class="link-secondary" href="#">(mais info)</a></li>
+                    <li><a class="link-secondary" href="#">(mais info)</a></li>
+                    <li><a class="link-secondary" href="#">(mais info)</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Contactos</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary" href="#">Telemovel:</a></li>
+                    <li><a class="link-secondary" href="#">Email:</a></li>
+                    <li><a class="link-secondary" href="#">(mais info)</a></li>
+                    <li><a class="link-secondary" href="#">(mais info)</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
