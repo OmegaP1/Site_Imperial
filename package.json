@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/OmegaP1/Site_Imperial/issues"
   },
+  "engines": {
+    "node": "14.16.0"
+  },
   "homepage": "https://github.com/OmegaP1/Site_Imperial#readme"
+  
 }
