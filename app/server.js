@@ -78,6 +78,6 @@ app.post("/Vinhos", async function (req, res) {
   }).find(findable);
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("Server is running in 3000");
 });
