@@ -43,6 +43,14 @@ app.get("/", async function (req, res) {
   });
 });
 
+app.get("/Menu", async function (req, res) {
+  res.render("Menu.ejs");
+});
+
+app.get("/RegistarVinho", async function (req, res) {
+  res.render("RegistarVinho.ejs");
+});
+
 app.get("/Vinhos", async function (req, res) {
   Regioes = [];
   await Vinhos.find({}, function (err, vinhos) {
