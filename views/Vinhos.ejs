@@ -103,43 +103,42 @@
                                                 <div style="align-self: center;">
                                                     <img src='/<%=vinhos.Nome%>.jpg'
                                                         style="align-items: center ;min-width:230px; min-height:350px;max-width:230px; max-height:350px;"
-                                                        class="d-inline-block align-middle" width=auto height=auto></img>
+                                                        class="d-inline-block align-middle" width=auto
+                                                        height=auto></img>
                                                 </div>
                                                 <div class="card-body">
                                                     <p style="font-size:27px;margin-bottom: 0px;">
                                                         <%=vinhos.Nome%>
                                                     </p>
-                                                    <p>
-                                                        <%=vinhos.Ano%>
 
-
-
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <div class="btn-group">
-                                                                    <button name="NomeVinho" value="<%=vinhos.Nome%>" style="margin-right: 10px;" type="submit"
-                                                                        class="btn btn-sm btn-outline-secondary">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">Ver
-                                                                                Vinho</font>
-                                                                        </font>
-                                                                    </button>
-                                                                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                                        <img src='/shopping-cart.png' style="align-items: center ;max-width:25px; max-height:25px;"
-                                                                            class="d-inline-block align-middle" width=auto height=auto></img>
-                                                                    </button>
-                                                                </div>
-                                                                <small class="text-muted" style="font-size:22px;">
+                                                    <%=vinhos.Ano%>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="btn-group">
+                                                                <button name="NomeVinho" value="<%=vinhos.Nome%>" style="margin-right: 10px;" type="submit"
+                                                                    class="btn btn-sm btn-outline-secondary">
                                                                     <font style="vertical-align: inherit;">
-                                                                        <%=vinhos.Preco%>€
+                                                                        <font style="vertical-align: inherit;">Ver
+                                                                            Vinho</font>
                                                                     </font>
-                                                                </small>
+                                                                </button>
+                                                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                                    <img src='/shopping-cart.png' style="align-items: center ;max-width:25px; max-height:25px;"
+                                                                        class="d-inline-block align-middle" width=auto height=auto></img>
+                                                                </button>
                                                             </div>
+                                                            <small class="text-muted" style="font-size:22px;">
+                                                                <font style="vertical-align: inherit;">
+                                                                    <%=vinhos.Preco%>€
+                                                                </font>
+                                                            </small>
+                                                        </div>
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <%}%>
-                                            <%})%>
+                                    <%}%>
+                                <%})%>
+                            </div>
                         </section>
                     </div>
                 </div>
