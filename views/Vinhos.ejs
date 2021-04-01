@@ -81,181 +81,69 @@
 
 
     <!-- ^vinhos-->
+
     <body>
         <form method="post" action='/Vinhos'>
 
-            <% for (var i =1; i <=numberOfRegioes;  i++ ) { %>
+            <% for (var i=1; i <=numberOfRegioes; i++ ) { %>
                 <div class="album py-5 bg-light">
                     <div class="container">
                         <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-                            <h1 class="display-4 font-italic" style="text-align: start;"><%=Regioes[i-1]%></h1>
-                            <a style="color:white;text-decoration:none;font-size:30px;padding: 30px;"
-                                href=#TintosRegiao1>Tintos</a>
-                            <a style=" color:white;text-decoration:none;font-size:30px;padding: 50px;"
-                                href="#BrancosRegiao1">Brancos</a>
+                            <h1 class="display-4 font-italic" style="text-align: start;">
+                                <%=Regioes[i-1]%>
+                            </h1>
 
                         </div>
                         <section id="TintosRegiao1">
-                            <div class="p-4 p-md-4 mb-4 text-white rounded bg-dark">
-                                <h1 class="display-4 font-italic" style="text-align: Center;">Tintos</h1>
-                            </div>
-
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                                 <%VinhosList.forEach(vinhos=>{%>
-                                    <%if (vinhos.Região == Regioes[i-1] ) { %>
-                                <div class="col">
-                                    <div class="card shadow-sm">
-                                        <div style="align-self: center;">
-                                                <img src='/<%=vinhos.Nome%>.jpg' style="align-items: center ;min-width:230px; min-height:350px;max-width:230px; max-height:350px;"
-                                                class="d-inline-block align-middle" width=auto height=auto></img>
-                                            </div>
-     
-                                        <div class="card-body">
-                                            <p style="font-size:27px;margin-bottom: 0px;"><%=vinhos.Nome%></p>
-                                            <p><%=vinhos.Ano%>
-                                                
-                                                
-                                           
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group" >
-                                                    <button name="NomeVinho" value="<%=vinhos.Nome%>" style="margin-right: 10px;" type="submit" class="btn btn-sm btn-outline-secondary">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Ver Vinho</font>
-                                                        </font>
-                                                    </button>
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                        <img src='/shopping-cart.png' style="align-items: center ;max-width:25px; max-height:25px;"
-                                                class="d-inline-block align-middle" width=auto height=auto></img>
-                                                    </button>
+                                    <%if (vinhos.Região==Regioes[i-1] ) { %>
+                                        <div class="col">
+                                            <div class="card shadow-sm">
+                                                <div style="align-self: center;">
+                                                    <img src='/<%=vinhos.Nome%>.jpg'
+                                                        style="align-items: center ;min-width:230px; min-height:350px;max-width:230px; max-height:350px;"
+                                                        class="d-inline-block align-middle" width=auto height=auto></img>
                                                 </div>
-                                                <small class="text-muted" style="font-size:22px;">
-                                                    <font style="vertical-align: inherit;">
-                                                          <%=vinhos.Preco%>€
-                                                    </font>
-                                                </small>
+                                                <div class="card-body">
+                                                    <p style="font-size:27px;margin-bottom: 0px;">
+                                                        <%=vinhos.Nome%>
+                                                    </p>
+                                                    <p>
+                                                        <%=vinhos.Ano%>
+
+
+
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div class="btn-group">
+                                                                    <button name="NomeVinho" value="<%=vinhos.Nome%>" style="margin-right: 10px;" type="submit"
+                                                                        class="btn btn-sm btn-outline-secondary">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            <font style="vertical-align: inherit;">Ver
+                                                                                Vinho</font>
+                                                                        </font>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                                        <img src='/shopping-cart.png' style="align-items: center ;max-width:25px; max-height:25px;"
+                                                                            class="d-inline-block align-middle" width=auto height=auto></img>
+                                                                    </button>
+                                                                </div>
+                                                                <small class="text-muted" style="font-size:22px;">
+                                                                    <font style="vertical-align: inherit;">
+                                                                        <%=vinhos.Preco%>€
+                                                                    </font>
+                                                                </small>
+                                                            </div>
+                                                </div>
+
                                             </div>
                                         </div>
-                                       
-                                    </div>
-                                </div>
-                                <%}%>
-                                <%})%>
+                                        <%}%>
+                                            <%})%>
                         </section>
                     </div>
                 </div>
-
-                <div class="container">
-
-                    <section id="BrancosRegiao1">
-                        <div class="p-4 p-md-10 mb-4 text-white rounded bg-dark">
-                            <h1 class="display-4 font-italic" style="text-align: Center;">Brancos</h1>
-                        </div>
-
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> 
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marcador de posição: ظفري"
-                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                        <title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
-                                            fill="#eceeef" dy=".3em">Vinho 1</text>
-
-
-                                    </svg>
-
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            <font style="vertical-align: inherit;">
-                                                <font style="vertical-align: inherit;">explicacao vinho 1</font>
-                                            </font>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Ver vinho</font>
-                                                    </font>
-                                                </button>
-                                            </div>
-                                            <small class="text-muted">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Ano?(mais informacoes)</font>
-                                                </font>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marcador de posição: ظفري"
-                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                        <title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
-                                            fill="#eceeef" dy=".3em">Vinho 2</text>
-                                    </svg>
-
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            <font style="vertical-align: inherit;">
-                                                <font style="vertical-align: inherit;">explicacao vinho 2</font>
-                                            </font>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Ver vinho</font>
-                                                    </font>
-                                                </button>
-                                            </div>
-                                            <small class="text-muted">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Ano?(mais informacoes)</font>
-                                                </font>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marcador de posição: ظفري"
-                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                        <title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
-                                            fill="#eceeef" dy=".3em">Vinho 3</text>
-                                    </svg>
-
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            <font style="vertical-align: inherit;">
-                                                <font style="vertical-align: inherit;">explicacao vinho 3</font>
-                                            </font>
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Ver vinho</font>
-                                                    </font>
-                                                </button>
-                                            </div>
-                                            <small class="text-muted">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Ano?(mais informacoes)</font>
-                                                </font>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </section>
-                </div>
-            <% } %>
+                <% } %>
         </form>
     </body>
 
