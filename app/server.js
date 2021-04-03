@@ -1,16 +1,22 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const int32 = require("mongoose-int32");
+const path = require("path");
+const bcrypt = require("bcryptjs");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
+app.use(express.json());
 
 mongoose.connect(
   "mongodb+srv://Nba_Tips:Nba_Tips@clusternba.decuk.mongodb.net/imperial?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (!err) {
       console.log("MongoDB Connection Succeeded.");
@@ -35,7 +41,15 @@ var wineSchema = new mongoose.Schema({
   Descricao2: String,
 });
 
+var UserSchema = new mongoose.Schema({
+  username: { type: String, require: true, unique: true },
+  password: { type: String, require: true },
+});
+
 const Vinhos = mongoose.model("vinhos", wineSchema);
+const User = mongoose.model("user", UserSchema);
+
+module.exports = User;
 
 app.get("/", async function (req, res) {
   await Vinhos.find({}, function (err, vinhos) {
@@ -88,4 +102,30 @@ app.post("/Vinhos", async function (req, res) {
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("Server is running in 3000");
+});
+
+app.get("/login", async function (req, res) {
+  res.sendFile(path.join(__dirname + "/login.html"));
+});
+
+app.post("/api/register", async (req, res) => {
+  console.log(req.body);
+
+  const { username, password: plainTextPassword } = req.body;
+
+  const password = await bcrypt.hash(plainTextPassword, 10);
+  console.log(await bcrypt.hash(password, 10));
+
+  try {
+    const responde = await User.create({
+      username,
+      password,
+    });
+    console.log("User created suc: ", responde);
+  } catch (error) {
+    console.log(error);
+    return res.json({ status: "error" });
+  }
+
+  res.json({ stauts: "ok" });
 });
