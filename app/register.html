@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Joao Veloso" />
     <meta name="generator" content="Joao Veloso" />
-    <title>Login</title>
+    <title>Register</title>
     <link rel="icon" href="/wine.svg" type="image/icon type" />
 
     <script src="/server.js"></script>
@@ -26,24 +26,24 @@
 </head>
 
 <body>
-    <h1>Login</h1>
-    <form id="login">
+    <h1>Registration</h1>
+    <form id="reg-form">
 
         <input type="text" autocomplete="off" id='username' placeholder="Username" />
         <input type="password" autocomplete="off" id='password' placeholder="Password" />
         <input type="submit" value='Submit Form' />
     </form>
     <script>
-        const form = document.getElementById('login')
-        form.addEventListener('submit', login)
+        const form = document.getElementById('reg-form')
+        form.addEventListener('submit', registerUser)
 
         //send data as json
-        async function login(event) {
+        async function registerUser(event) {
             event.preventDefault()
             const username = document.getElementById('username').value
             const password = document.getElementById('password').value
 
-            const result = await fetch('/api/login', {
+            const result = await fetch('/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -52,14 +52,7 @@
                     username, password
                 })
 
-
             }).then((res) => res.json())
-
-            if (result.status === 'ok') {
-                localStorage.setItem('token', result.data)
-            }
-
-
         }
 
 

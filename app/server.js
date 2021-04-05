@@ -4,6 +4,9 @@ const app = express();
 const int32 = require("mongoose-int32");
 const path = require("path");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET =
+  "sadksandsakjnsajfndjsfndsjnfsjasodmasod asmdasodmoadmaosdaskdas323293ewqk";
 
 app.use(
   express.urlencoded({
@@ -48,8 +51,6 @@ var UserSchema = new mongoose.Schema({
 
 const Vinhos = mongoose.model("vinhos", wineSchema);
 const User = mongoose.model("user", UserSchema);
-
-module.exports = User;
 
 app.get("/", async function (req, res) {
   await Vinhos.find({}, function (err, vinhos) {
@@ -108,23 +109,107 @@ app.get("/login", async function (req, res) {
   res.sendFile(path.join(__dirname + "/login.html"));
 });
 
-app.post("/api/register", async (req, res) => {
-  console.log(req.body);
+app.get("/register", async function (req, res) {
+  res.sendFile(path.join(__dirname + "/register.html"));
+});
 
-  const { username, password: plainTextPassword } = req.body;
+app.get("/change-password", async function (req, res) {
+  res.sendFile(path.join(__dirname + "/change-password.html"));
+});
 
-  const password = await bcrypt.hash(plainTextPassword, 10);
-  console.log(await bcrypt.hash(password, 10));
+app.post("/api/change-password", async (req, res) => {
+  const { token, newpassword } = req.body;
+
+  console.log(newpassword);
+
+  if (!newpassword || typeof newpassword !== "string") {
+    return res.json({ staus: "Error", error: "Invalid password" });
+  }
+
+  if (newpassword.length < 5) {
+    console.log("entrei");
+    return res.json({
+      staus: "Error",
+      error: "Password too small. Should be atleast 6 characters",
+    });
+  }
 
   try {
+    const user = jwt.verify(token, JWT_SECRET);
+    const _id = user.id;
+    const hashedPassword = await bcrypt.hash(newpassword, 10);
+
+    //erro esta aqui
+    //console.log("olaaaa", await User.findOne({ _id })); funciona
+
+    await User.updateOne(
+      { _id },
+      {
+        $set: { password: hashedPassword },
+      }
+    );
+
+    res.json({ status: "ok" });
+  } catch (error) {
+    res.json({ status: "error" });
+  }
+});
+
+app.post("/api/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await User.findOne({ username }).lean();
+
+  console.log(user);
+
+  if (!user) {
+    return res.json({ status: "error", error: "Invalid Username/password" });
+  }
+
+  if (await bcrypt.compare(password, user.password)) {
+    const token = jwt.sign(
+      { id: user._id, username: user.username },
+      JWT_SECRET
+    );
+    return res.json({ status: "ok", data: token });
+  }
+  res.json({ status: "error", error: "Invalid Username/password" });
+});
+
+app.post("/api/register", async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || typeof password !== "string") {
+    return res.json({ staus: "Error", error: "Invalid username" });
+  }
+
+  if (!password || typeof password !== "string") {
+    return res.json({ staus: "Error", error: "Invalid password" });
+  }
+
+  if (password.length < 5) {
+    console.log("entrei");
+    return res.json({
+      staus: "Error",
+      error: "Password too small. Should be atleast 6 characters",
+    });
+  }
+
+  try {
+    const encrypted_password = await bcrypt.hash(password, 10);
+    console.log(await bcrypt.hash(password, 10));
+    console.log(req.body);
     const responde = await User.create({
       username,
-      password,
+      password: encrypted_password,
     });
     console.log("User created suc: ", responde);
   } catch (error) {
-    console.log(error);
-    return res.json({ status: "error" });
+    if (error.code === 11000) {
+      //duplicated key
+      return res.json({ status: "error", error: "Username already in use" });
+    }
+    throw error;
   }
 
   res.json({ stauts: "ok" });
