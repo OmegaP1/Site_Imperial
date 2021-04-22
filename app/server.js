@@ -44,6 +44,7 @@ var wineSchema = new mongoose.Schema({
   Descricao2: String,
 });
 
+Username = "";
 var UserSchema = new mongoose.Schema({
   username: { type: String, require: true, unique: true },
   password: { type: String, require: true },
@@ -159,8 +160,6 @@ app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
 
   const user = await User.findOne({ username }).lean();
-
-  console.log(user);
 
   if (!user) {
     return res.json({ status: "error", error: "Invalid Username/password" });

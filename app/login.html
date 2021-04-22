@@ -53,16 +53,17 @@
                 })
 
 
-            }).then((res) => res.json())
+            }).then((res) => res.json().then(response => {
 
-            if (result.status === 'ok') {
-                localStorage.setItem('token', result.data)
-            }
+                if (response.status == 'ok') {
+                    localStorage.setItem('token', response.data)
+                    localStorage.setItem('username', username)
+                    window.location.href = '/'
+                }
+            }))
 
 
         }
-
-
     </script>
 
 
