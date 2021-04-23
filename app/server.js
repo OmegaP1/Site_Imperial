@@ -7,6 +7,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET =
   "sadksandsakjnsajfndjsfndsjnfsjasodmasod asmdasodmoadmaosdaskdas323293ewqk";
+const read = require("read-css");
+var fs = require("fs");
 
 app.use(
   express.urlencoded({
@@ -16,6 +18,7 @@ app.use(
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(express.json());
+app.use(express.static("public"));
 
 mongoose.connect(
   "mongodb+srv://Nba_Tips:Nba_Tips@clusternba.decuk.mongodb.net/imperial?retryWrites=true&w=majority",
@@ -44,7 +47,6 @@ var wineSchema = new mongoose.Schema({
   Descricao2: String,
 });
 
-Username = "";
 var UserSchema = new mongoose.Schema({
   username: { type: String, require: true, unique: true },
   password: { type: String, require: true },
@@ -102,11 +104,17 @@ app.post("/Vinhos", async function (req, res) {
   }).find(findable);
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log("Server is running in 3000");
+app.listen(process.env.PORT || 30001, function () {
+  console.log("Server is running in 30001");
 });
 
 app.get("/login", async function (req, res) {
+  /*fs.readFile(__dirname + "/css/login.css", function (err, data) {
+    if (err) console.log(err);
+    res.writeHead(200, { "Content-Type": "text/css" });
+    res.write(data);
+    res.end();
+  });*/
   res.sendFile(path.join(__dirname + "/login.html"));
 });
 
@@ -179,17 +187,17 @@ app.post("/api/register", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || typeof password !== "string") {
-    return res.json({ staus: "Error", error: "Invalid username" });
+    return res.json({ status: "Error", error: "Invalid username" });
   }
 
   if (!password || typeof password !== "string") {
-    return res.json({ staus: "Error", error: "Invalid password" });
+    return res.json({ status: "Error", error: "Invalid password" });
   }
 
   if (password.length < 5) {
     console.log("entrei");
     return res.json({
-      staus: "Error",
+      status: "Error",
       error: "Password too small. Should be atleast 6 characters",
     });
   }
@@ -211,5 +219,5 @@ app.post("/api/register", async (req, res) => {
     throw error;
   }
 
-  res.json({ stauts: "ok" });
+  res.json({ status: "ok" });
 });

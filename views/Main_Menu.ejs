@@ -60,7 +60,8 @@
         <!-- nav bar-->
 
         <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container">
+
+            <div style="padding-left: 20px;">
                 <a href="/" class="navbar-brand d-flex align-items-center">
                     <strong>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
@@ -75,37 +76,52 @@
                         </font>
                     </strong>
                 </a>
-                <a style="color:white;text-decoration:none;" href=/Menu>Menu</a>
-                <a style="color:white;text-decoration:none;" href=/Vinhos>Garrafeira</a>
-                <a style="color:white;text-decoration:none;" href="#Album">Album</a>
-                <a style="color:white;text-decoration:none;" href="#contactos">Contactos</a>
+            </div>
+
+            <a style="color:white;text-decoration:none;" href=/Menu>Menu</a>
+            <a style="color:white;text-decoration:none;" href=/Vinhos>Garrafeira</a>
+            <a style="color:white;text-decoration:none;" href="#Album">Album</a>
+            <a style="color:white;text-decoration:none;" href="#contactos">Contactos</a>
 
 
-                <script>
-                    $(document).ready(function () {
-                        console.log(localStorage.getItem('token'))
-                        if (localStorage.getItem('token')) { //saber se ta login
-                            document.getElementById('userPanel').style.display = 'flex'
-                            document.getElementById('ConectButtons').style.display = 'none'
-                            //localStorage.clear() a tudo
-                            //localStorage.removeItem('token')
-                        }
-                    });
-                </script>
+            <script>
+                $(document).ready(function () {
+                    console.log(localStorage.getItem('token'))
+                    if (localStorage.getItem('token')) { //saber se ta login
+                        document.getElementById('userPanel').style.display = 'flex'
+                        document.getElementById('ConectButtons').style.display = 'none'
+                        document.getElementById('username_tag').innerHTML = localStorage.getItem('username')
+                        document.getElementById('username_tag').style.verticalAlign = 'inherit'
+                        document.getElementById('profileimage').style.display = 'flex'
 
-                <div id='ConectButtons' style="display: flex;">
-                    <a style="color:white;text-decoration:none;" href="/login">Login</a>
-                    <a style="color:white;text-decoration:none;" href="/register">Registo</a>
+                        //localStorage.clear() a tudo
+                        //localStorage.removeItem('token')
+                    }
+                });
+            </script>
 
-                </div>
-                <div id="userPanel" style="display: none;">
-                    <h1>Hello User</h1>
-
-                </div>
-
-
+            <div class="navbar-brand d-flex align-items-center" id='ConectButtons'
+                style="display: flex;padding-right: 10px;">
+                <a style="color:white;text-decoration:none;padding-right: 60px;" href="/login">Login</a>
+                <a style="color:white;text-decoration:none;" href="/register">Registo</a>
 
             </div>
+
+
+            <div class="navbar-brand d-flex align-items-center" id="userPanel"
+                style="display: none;padding-right: 2   0px;">
+                <img id="profileimage" style="display: none"
+                    src="https://img.icons8.com/doodle/48/000000/gender-neutral-user.png" />
+                <strong>
+                    <font style="color: white;vertical-align: inherit;">
+                        <font id="username_tag" style="vertical-align: inherit;"></font>
+                    </font>
+                </strong>
+            </div>
+
+
+
+
         </div>
     </header>
 
