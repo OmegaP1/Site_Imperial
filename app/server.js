@@ -5,8 +5,7 @@ const int32 = require("mongoose-int32");
 const path = require("path");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET =
-  "sadksandsakjnsajfndjsfndsjnfsjasodmasod asmdasodmoadmaosdaskdas323293ewqk";
+const JWT_SECRET = "sadksandsakjnsajfndjsfndsjnfsjasodmasod asmdasodmoadmaosdaskdas323293ewqk";
 const read = require("read-css");
 var fs = require("fs");
 
@@ -20,17 +19,13 @@ app.use(express.static("assets"));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect(
-  "mongodb+srv://Nba_Tips:Nba_Tips@clusternba.decuk.mongodb.net/imperial?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
-  (err) => {
-    if (!err) {
-      console.log("MongoDB Connection Succeeded.");
-    } else {
-      console.log("Error in DB connection : " + err);
-    }
+mongoose.connect("mongodb+srv://Nba_Tips:Nba_Tips@clusternba.decuk.mongodb.net/imperial?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (err) => {
+  if (!err) {
+    console.log("MongoDB Connection Succeeded.");
+  } else {
+    console.log("Error in DB connection : " + err);
   }
-);
+});
 
 numberOfRegioes = 0;
 Regioes = [];
@@ -45,6 +40,10 @@ var wineSchema = new mongoose.Schema({
   Região: String,
   Descricao1: String,
   Descricao2: String,
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 var UserSchema = new mongoose.Schema({
@@ -77,10 +76,7 @@ app.get("/Vinhos", async function (req, res) {
       if (Regioes.length == 0) {
         Regioes.push(helper);
       }
-      if (
-        helper != Regioes[Regioes.length] &&
-        helper != Regioes[Regioes.length - 1]
-      ) {
+      if (helper != Regioes[Regioes.length] && helper != Regioes[Regioes.length - 1]) {
         Regioes.push(helper);
       }
     }
@@ -91,6 +87,10 @@ app.get("/Vinhos", async function (req, res) {
       VinhosList: vinhos,
     });
   }).sort({ Região: 1 });
+});
+
+app.get("/AdicionarVinhos", async function (req, res) {
+  res.render("AdicionarVinhos.ejs");
 });
 
 app.post("/Vinhos", async function (req, res) {
@@ -174,10 +174,7 @@ app.post("/api/login", async (req, res) => {
   }
 
   if (await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign(
-      { id: user._id, username: user.username },
-      JWT_SECRET
-    );
+    const token = jwt.sign({ id: user._id, username: user.username }, JWT_SECRET);
     return res.json({ status: "ok", data: token });
   }
   res.json({ status: "error", error: "Invalid Username/password" });
@@ -221,3 +218,50 @@ app.post("/api/register", async (req, res) => {
 
   res.json({ status: "ok" });
 });
+
+/*
+
+var multer = require("multer");
+
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now());
+  },
+});
+
+var upload = multer({ storage: storage });
+
+app.get("/AdicionarVinhos", (req, res) => {
+  res.render("imagesPage");
+});
+
+app.post("/AdicionarVinhos", upload.single("image"), (req, res, next) => {
+  var obj = {
+    Nome: req.body.Nome,
+    Casta: req.body.Casta,
+    Teor_Alcoolico: req.body.Teor,
+    Preco: req.body.Preco,
+    Ano: req.body.Ano,
+    Categoria: req.body.Categoria,
+    Região: req.body.Regiao,
+    Descricao1: req.body.Descricao1,
+    Descricao2: req.body.Descricao2,
+    img: {
+      data: fs.readFileSync(path.join(__dirname + "/uploads/" + req.file.filename)),
+      contentType: "image/png",
+    },
+  };
+  imgModel.create(obj, (err, item) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // item.save();
+      res.redirect("/");
+    }
+  });
+});
+
+*/

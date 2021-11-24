@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Joao Veloso" />
+    <meta name="generator" content="Joao Veloso" />
+    <title>Garrafeira</title>
+    <link rel="icon" href="/wine.svg" type="image/icon type" />
+
+    <script src="/server.js"></script>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>To Upload Image on mongoDB</h1>
+    <hr>
+    <div>
+        <form action="/AdicionarVinhos" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="name">Nome</label>
+                <input type="text" id="Nome" placeholder="Nome" value="" name="Nome" required>
+            </div>
+            <div>
+                <label for="name">Casta</label>
+                <input type="text" id="Casta" placeholder="Casta" value="" name="Casta" required>
+            </div>
+            <div>
+                <label for="name">Teor Alcolico</label>
+                <input type="text" id="Teor" placeholder="Teor Alcolico" value="" name="Teor" required>
+            </div>
+            <div>
+                <label for="name">Preço</label>
+                <input type="text" id="Preco" placeholder="Preço" value="" name="Preco" required>
+            </div>
+            <div>
+                <label for="name">Ano</label>
+                <input type="number" id="Ano" placeholder="Ano" value="" name="Ano" required>
+            </div>
+            <div>
+                <label for="name">Categoria</label>
+                <input type="text" id="Categoria" placeholder="Categoria" value="" name="Categoria" required>
+            </div>
+            <div>
+                <label for="name">Região</label>
+                <input type="text" id="Regiao" placeholder="Regiao" value="" name="Regiao" required>
+            </div>
+            <div>
+                <label for="name">Descricao1</label>
+                <input type="text" id="Descricao1" placeholder="Descricao1" value="" name="Descricao1" required>
+            </div>
+            <div>
+                <label for="name">Descricao2</label>
+                <input type="text" id="Descricao2" placeholder="Descricao2" value="" name="Descricao2" required>
+            </div>
+            <div>
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" value="" required>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+</body>
+
+</html>
